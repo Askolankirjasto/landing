@@ -464,7 +464,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Close the category overlay and update books when a category is clicked
-    document.querySelectorAll('.gallery-filter2 .filter-item2').forEach(item => {
+   document.querySelectorAll('.gallery-filter2 .filter-item2').forEach(item => {
     item.addEventListener('click', function(event) {
         event.preventDefault();
         closeNav(); // Close the overlay
@@ -476,8 +476,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const categoryLink = document.querySelector('#openNav');
         const categoryText = this.textContent;
         categoryLink.textContent = `${categoryText} ☰`;
+        // Scroll to top after a delay
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 1000); // Longer delay to ensure UI is ready
     });
 });
+
 
 
     // Call the function to populate the library list
