@@ -158,9 +158,8 @@ document.addEventListener('DOMContentLoaded', function() {
     filtersContainer.innerHTML = '';
     galleryContainer.innerHTML = '';
 
-    // Remove existing modals
-    document.querySelectorAll('.modal').forEach(modal => modal.remove());
-
+    // Remove existing modals but info
+document.querySelectorAll('.modal:not(#exampleModalCenter)').forEach(modal => modal.remove());
     // Collect unique categories
     const uniqueCategories = new Set();
     bookData.forEach(item => {
@@ -332,10 +331,10 @@ function shuffleArray(array) {
 
         const closeButton = document.createElement('button');
         closeButton.type = 'button';
-        closeButton.className = 'close';
+        closeButton.className = 'btn-close';
         closeButton.setAttribute('data-bs-dismiss', 'modal');
         closeButton.setAttribute('aria-label', 'Close');
-        closeButton.innerHTML = 'x'; // Ensure only one "×" symbol
+       // closeButton.innerHTML = 'x'; // Ensure only one "×" symbol
 
         modalHeader.appendChild(modalTitle);
         modalHeader.appendChild(closeButton);

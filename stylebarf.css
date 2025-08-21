@@ -580,28 +580,44 @@ h1.luku {
   }
 /*---------------------------------------------------------------------------modal-------------------------------*/
 
-/* Custom styles for the modal */
 
+/* Custom styles for the modal */
 .modal-dialog {
-    max-width: 50%; /* Adjust the width as needed for larger screens */
-    width: 33%;
+    max-width: 90%; /* Default width for all screens */
+    width: 90%;
     margin: 1.75rem auto; /* Center the modal */
 }
 
-
-@media (max-width: 768px) {
+/* Adjust for larger screens */
+@media (min-width: 576px) {
     .modal-dialog {
-        max-width: 90%; /* Adjust the width for smaller screens */
-        width: 90%;
+        max-width: 80%; /* Slightly larger on tablets */
+        width: 80%;
     }
 }
 
-/* Additional styles for very small screens */
-@media (max-width: 576px) {
+/* Adjust for desktops */
+@media (min-width: 768px) {
     .modal-dialog {
-        max-width: 90%; /* Full width for very small screens */
-        width: 90%;
-       /* margin: 0.5rem; /* Adjust margin for better fit */
+        max-width: 70%; /* Larger on desktops */
+        width: 70%;
+    }
+}
+
+/* Adjust for very large screens */
+@media (min-width: 992px) {
+    .modal-dialog {
+        max-width: 60%; /* Even larger on big screens */
+        width: 60%;
+    }
+}
+
+/* Special handling for landscape phones */
+@media (max-width: 767.98px) and (orientation: landscape) {
+    .modal-dialog {
+        max-width: 95%; /* Almost full width in landscape */
+        width: 95%;
+        margin: 0.5rem auto; /* Less margin for landscape */
     }
 }
 
@@ -610,24 +626,45 @@ h1.luku {
     border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
+/* Landscape phones */
+@media (max-width: 767.98px) and (orientation: landscape) {
+    .modal-content {
+        border-radius: 0.2rem; /* Slightly smaller border radius */
+    }
+}
+
+
 .modal-body {
-    padding: 20px; /* Adjust padding as needed */
+    padding: 15px; /* Default padding */
+}
+
+/* Landscape phones */
+@media (max-width: 767.98px) and (orientation: landscape) {
+    .modal-body {
+        padding: 10px; /* Less padding for landscape */
+    }
+    col-12.col-md-6 {
+        flex: 0 0 100%; /* Full width for both columns */
+        max-width: 100%;
+    }
 }
 
 .modalimg {
-    max-height: 450px;
-    border-radius: 0.3rem;
-    max-width: 80%;
+    max-height: 300px; /* Default height */
+    max-width: 100%; /* Full width of container */
     height: auto;
     object-fit: contain;
+    border-radius: 0.3rem;
 }
 
-@media (max-width: 767.98px) {
+/* Landscape phones */
+@media (max-width: 767.98px) and (orientation: landscape) {
     .modalimg {
-        height: auto;
-        margin-bottom: 1em;
+        max-height: 200px; /* Smaller height for landscape */
+        width: 100%; /* Full width */
     }
 }
+
 
 .row {
     display: flex;

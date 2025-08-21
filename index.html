@@ -8,8 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="stylebarf.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 
     
 
@@ -41,7 +43,7 @@ select {
 
           <header class="lukuheader" role="banner">
      <h1 class="lukulogo">
-    <a id="hellehome" href="#"><span>Helle</span>Finna</a>
+    <a id="hellehome" href="#"><span></span></a>
   </h1>
         <h1 class="lukulogo">
         <form method="get" name="form" action="" id="myForm" style="display: none;">
@@ -66,14 +68,11 @@ select {
     </div>
 
     <div class="mycontact">
-        <a href="mailto:sohvi.hiilivirta@askola.com" class="c-icon-button c-icon-button--right">
-            <span>Sohvi Hiilivirta</span>
+        <a href="mailto:kirjasto@askola.com" class="c-icon-button c-icon-button--right">
+            <span>Askolan kunnankirjasto</span>
             <i class="fa fa-envelope"></i>
         </a><br>
-        <a href="mailto:david.thiry@askola.com" class="c-icon-button c-icon-button--right">
-            <span>David Thiry</span>
-            <i class="fa fa-envelope"></i>
-        </a>
+        
     </div>
 </header>
 
@@ -89,11 +88,12 @@ select {
                     <h1 class="luku">
                         Lukudiplomi
                         <span id="vuosi" class="">2025</span>
-                        <a href="#">
-                            <i>
-                                <span id="lukuinfo" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" class="animate__infinite infinite animate__animated animate animate__pulse animate__slow fa fa-info-circle"></span>
-                            </i>
-                        </a>
+                       <a href="#" id="lukuinfo" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+    <i class="fa fa-info-circle animate__infinite animate__animated animate__pulse animate__slow"></i>
+</a>
+
+
+
                     </h1>
                     <div class="gallery-filter" id="filters">
                         <!-- Filters will be populated dynamically -->
@@ -133,14 +133,10 @@ select {
 
   </div>
     <div class="mycontact">
-        <a href="mailto:sohvi.hiilivirta@askola.com" class="c-icon-button c-icon-button--right minicontact">
-            <span>Sohvi Hiilivirta</span>
+        <a href="mailto:kirjasto@askola.com" class="c-icon-button c-icon-button--right minicontact">
+            <span>Askolan kunnankirjasto</span>
             <i class="fa fa-envelope"></i>
         </a><br>
-        <a href="mailto:david.thiry@askola.com" class="c-icon-button c-icon-button--right minicontact">
-            <span>David Thiry</span>
-            <i class="fa fa-envelope"></i>
-        </a>
     </div>
 </div>
 
@@ -165,14 +161,10 @@ select {
         </nav>
     </div>
     <div class="mycontact">
-        <a href="mailto:sohvi.hiilivirta@askola.com" class="c-icon-button c-icon-button--right minicontact">
-            <span>Sohvi Hiilivirta</span>
+        <a href="mailto:kirjasto@askola.com" class="c-icon-button c-icon-button--right minicontact">
+            <span>Askolan kunnankirjasto</span>
             <i class="fa fa-envelope"></i>
         </a><br>
-        <a href="mailto:david.thiry@askola.com" class="c-icon-button c-icon-button--right minicontact">
-            <span>David Thiry</span>
-            <i class="fa fa-envelope"></i>
-        </a>
     </div>
 
 </div>
@@ -195,12 +187,10 @@ select {
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title text-center" id="exampleModalLongTitle">Lukudiplomi</h2>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-        </button>
+        <h2 class="modal-title text-center" id="exampleModalCenterTitle">Lukudiplomi</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-justify modalpadding">
-        
         <h3 class="text-center">Ohjeet lukudiplomin käyttöön:</h3>
         Lukudiplomi suoritetaan lukuvuoden aikana ja diplomissa on kolme tasoa:<br><br><span class="myblock text-center">1. 5 luettua kirjaa<br>2. 10 luettua kirjaa<br>3. 15 luettua kirjaa.</span>
         <br><br>1.–2. lk<br>Lue vähintään viisi haluamaasi kirjaa. Voit valita mistä kategoriasta tahansa.<br>Ne, joiden lukutaito on jo parempi, voivat valita yhden kirjan jokaisesta kategoriasta
@@ -218,11 +208,9 @@ select {
         <hr class="solid">
         <h3 class="text-center">Jokaisella on oikeus monipuoliseen lukutaitoon</h3>
         <br>Jokaisella on oikeus monipuoliseen lukutaitoon ja lukevaan elämäntapaan. Lukutaito on välttämätön taito yhteiskunnassa pärjäämiselle ja se on koko demokraattisen yhteiskuntamme perusta. Monipuolinen lukutaito luo pohjan kaikelle oppimiselle, joten kukaan ei voi välttyä lukemiselta.
-        
-        </div>
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sulje</button>
-       
       </div>
     </div>
   </div>
