@@ -145,125 +145,137 @@ document.addEventListener('DOMContentLoaded', function() {
         return array;
     }
 
-    function filterBookData(library, grade = 'Grade 1', category = 'all') {
-        const filtersContainer = document.getElementById('filters');
-        filtersContainer.innerHTML = '';
-
-        const uniqueCategories = new Set();
-        bookData.forEach(item => {
-            if (item.acf && item.acf.category) {
-                uniqueCategories.add(item.acf.category);
-            }
-        });
-
-        // Sort categories alphabetically
-        const sortedCategories = Array.from(uniqueCategories).sort();
-
-        sortedCategories.forEach(category => {
-            const filter = document.createElement('span');
-            filter.className = 'filter filter-item myanimate filter-item2';
-            filter.setAttribute('data-filter', `.${sanitizeCategory(category)}`);
-            filter.textContent = category;
-            filtersContainer.appendChild(filter);
-        });
-
-        // Add "Kaikki" category as the last filter
-        const allFilter = document.createElement('span');
-        allFilter.className = 'filter filter-item myanimate filter-item2';
-        allFilter.setAttribute('data-filter', 'all');
-        allFilter.textContent = 'Kaikki';
-        filtersContainer.appendChild(allFilter);
-
-        const galleryContainer = document.getElementById('menufilter');
-        galleryContainer.innerHTML = '';
-
-        // Remove existing modals
-        document.querySelectorAll('.modal').forEach(modal => modal.remove());
-
-        // Shuffle the bookData if the category is "all"
-        const filteredBookData = category === 'all' ? shuffleArray([...bookData]) : bookData;
-
-        filteredBookData.forEach((item, index) => {
-            const sanitizedCategory = sanitizeCategory(item.acf.category);
-            if (category === 'all' || sanitizedCategory === sanitizeCategory(category)) {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = `gallery-item ${sanitizedCategory}`;
-                galleryItem.setAttribute('data-bs-toggle', 'modal');
-                galleryItem.setAttribute('data-bs-target', `#Modal${index}`);
-
-                // Initially hide the new items
-                galleryItem.style.opacity = '0';
-                galleryItem.style.transform = 'scale(0.8)';
-
-                const innerDiv = document.createElement('div');
-                innerDiv.className = 'gallery-item-inner';
-
-                const hoverEffectDiv = document.createElement('div');
-                hoverEffectDiv.className = 'hovereffect';
-
-                const img = document.createElement('img');
-                img.src = item.acf.cover
-                    ? `${item.acf.cover}` // Use the imageSrc method for the cover
-                    : `https://helle.finna.fi/Cover/Show?source=Solr&size=large&recordid=${item.acf.id}`;
-                img.alt = item.acf.title;
-
-                const overlayDiv = document.createElement('div');
-                overlayDiv.className = 'overlay';
-
-                const title = document.createElement('h2');
-                title.textContent = item.acf.title;
-
-                const infoButton = document.createElement('button');
-                infoButton.type = 'button';
-                infoButton.className = 'btn btn-primary over myanimate';
-                infoButton.textContent = 'Lisää tietoa';
-
-                overlayDiv.appendChild(title);
-                overlayDiv.appendChild(infoButton);
-                hoverEffectDiv.appendChild(img);
-                hoverEffectDiv.appendChild(overlayDiv);
-                innerDiv.appendChild(hoverEffectDiv);
-                galleryItem.appendChild(innerDiv);
-                galleryContainer.appendChild(galleryItem);
-
-                // Create modal for each book
-                createModal(item, index);
-            }
-        });
-
-        // Initialize MixItUp with animation settings
-        mixer = mixitup(galleryContainer, {
-            selectors: {
-                target: '.gallery-item'
-            },
-            animation: {
-                duration: 600, // Increase the duration for a smoother animation
-                effects: 'fade scale(0.5) translateZ(-100px)', // Combine fade, scale, and translateZ effects
-                easing: 'cubic-bezier(0.645, 0.045, 0.355, 1)' // Custom easing for a more dynamic effect
-            },
-            load: {
-                filter: 'all' // Ensure all items are shown on load
-            }
-        });
-
-        // Fade in the new gallery items
-        const newGalleryItems = galleryContainer.querySelectorAll('.gallery-item');
-        newGalleryItems.forEach(item => {
-            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            item.style.opacity = '1';
-            item.style.transform = 'scale(1)';
-        });
-
-        // Initialize the filter function and set the "Kaikki" category as active by default
-        mygalleryfilterf2();
-        const allFilterElement = filtersContainer.querySelector('[data-filter="all"]');
-        if (allFilterElement) {
-            allFilterElement.classList.add('active');
-        }
-
-        // Populate the categories in the navigation menu
-        populateCategories(sortedCategories);
+  function filterBookData(library, grade = 'Grade 1', category = 'all') {
+    // Get the gallery container and check if it exists
+    const galleryContainer = document.getElementById('menufilter');
+    if (!galleryContainer) {
+        console.error('Error: #menufilter element not found!');
+        return;
     }
+
+    const filtersContainer = document.getElementById('filters');
+    if (!filtersContainer) {
+        console.error('Error: #filters element not found!');
+        return;
+    }
+
+    filtersContainer.innerHTML = '';
+    const uniqueCategories = new Set();
+    bookData.forEach(item => {
+        if (item.acf && item.acf.category) {
+            uniqueCategories.add(item.acf.category);
+        }
+    });
+
+    // Sort categories alphabetically
+    const sortedCategories = Array.from(uniqueCategories).sort();
+    sortedCategories.forEach(category => {
+        const filter = document.createElement('span');
+        filter.className = 'filter filter-item myanimate filter-item2';
+        filter.setAttribute('data-filter', `.${sanitizeCategory(category)}`);
+        filter.textContent = category;
+        filtersContainer.appendChild(filter);
+    });
+
+    // Add "Kaikki" category as the last filter
+    const allFilter = document.createElement('span');
+    allFilter.className = 'filter filter-item myanimate filter-item2';
+    allFilter.setAttribute('data-filter', 'all');
+    allFilter.textContent = 'Kaikki';
+    filtersContainer.appendChild(allFilter);
+
+    // Clear the gallery container
+    galleryContainer.innerHTML = '';
+
+    // Remove existing modals
+    document.querySelectorAll('.modal').forEach(modal => modal.remove());
+
+    // Shuffle the bookData if the category is "all"
+    const filteredBookData = category === 'all' ? shuffleArray([...bookData]) : bookData;
+    filteredBookData.forEach((item, index) => {
+    const sanitizedCategory = sanitizeCategory(item.acf.category);
+    if (category === 'all' || sanitizedCategory === sanitizeCategory(category)) {
+        const galleryItem = document.createElement('div');
+        galleryItem.className = `gallery-item ${sanitizedCategory}`;
+        galleryItem.setAttribute('data-bs-toggle', 'modal');
+        galleryItem.setAttribute('data-bs-target', `#Modal${index}`);
+
+        const innerDiv = document.createElement('div');
+        innerDiv.className = 'gallery-item-inner';
+
+        const hoverEffectDiv = document.createElement('div');
+        hoverEffectDiv.className = 'hovereffect';
+
+        const imgContainer = document.createElement('div');
+        imgContainer.style.position = 'relative';
+
+        const img = document.createElement('img');
+        img.src = item.acf.cover
+            ? `${item.acf.cover}`
+            : `https://helle.finna.fi/Cover/Show?source=Solr&size=large&recordid=${item.acf.id}`;
+        img.alt = item.acf.title;
+        img.loading = 'lazy';
+        img.style.opacity = '0';
+        img.style.transition = 'opacity 0.3s';
+
+        const spinner = document.createElement('div');
+        spinner.classList.add('loading-spinner');
+        imgContainer.appendChild(spinner);
+        imgContainer.appendChild(img);
+
+        img.onload = function() {
+            img.style.opacity = '1';
+            spinner.style.display = 'none';
+        };
+
+        hoverEffectDiv.appendChild(imgContainer);
+        innerDiv.appendChild(hoverEffectDiv);
+        galleryItem.appendChild(innerDiv);
+        galleryContainer.appendChild(galleryItem);
+    }
+});
+
+
+    // Initialize MixItUp with animation settings
+    mixer = mixitup(galleryContainer, {
+        selectors: {
+            target: '.gallery-item'
+        },
+        animation: {
+            duration: 600,
+            effects: 'fade scale(0.5) translateZ(-100px)',
+            easing: 'cubic-bezier(0.645, 0.045, 0.355, 1)'
+        },
+        load: {
+            filter: 'all'
+        }
+    });
+
+    // Fade in the new gallery items
+    const newGalleryItems = galleryContainer.querySelectorAll('.gallery-item');
+    newGalleryItems.forEach(item => {
+        item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        item.style.opacity = '1';
+        item.style.transform = 'scale(1)';
+    });
+
+    // Initialize the filter function and set the "Kaikki" category as active by default
+    mygalleryfilterf2();
+    const allFilterElement = filtersContainer.querySelector('[data-filter="all"]');
+    if (allFilterElement) {
+        allFilterElement.classList.add('active');
+    }
+
+    // Populate the categories in the navigation menu
+    populateCategories(sortedCategories);
+
+    // Scroll to top after fade-in
+    setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 600);
+}
+
+
 
     function createModal(item, index) {
         const modal = document.createElement('div');
@@ -465,20 +477,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Close the category overlay and update books when a category is clicked
     document.querySelectorAll('.gallery-filter2 .filter-item2').forEach(item => {
-        item.addEventListener('click', function(event) {
-            event.preventDefault();
-            closeNav();
-            const selectedCategory = this.getAttribute('data-filter');
-            const selectedLibrary = document.getElementById('mySelect').value;
-            const selectedGrade = document.querySelector('.lukumain-nav .activenav').getAttribute('data-grade');
-            filterBookData(selectedLibrary, selectedGrade, selectedCategory);
-
-            // Update the category link text
-            const categoryLink = document.querySelector('#openNav');
-            const categoryText = this.textContent;
-            categoryLink.textContent = `${categoryText} ☰`;
-        });
+    item.addEventListener('click', function(event) {
+        event.preventDefault();
+        closeNav();
+        const selectedCategory = this.getAttribute('data-filter');
+        const selectedLibrary = document.getElementById('mySelect').value;
+        const selectedGrade = document.querySelector('.lukumain-nav .activenav').getAttribute('data-grade');
+        filterBookData(selectedLibrary, selectedGrade, selectedCategory);
+        // Update the category link text
+        const categoryLink = document.querySelector('#openNav');
+        const categoryText = this.textContent;
+        categoryLink.textContent = `${categoryText} ☰`;
+        // Scroll to top after a delay
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 700); // Delay to ensure UI is ready
     });
+});
 
     // Call the function to populate the library list
     populateLibraryList();
@@ -505,40 +520,45 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function populateCategories(categories) {
-        const navContainer = document.getElementById('categoryNav');
-        navContainer.innerHTML = '';
-
-        categories.forEach(category => {
-            const navItem = document.createElement('a');
-            navItem.innerHTML = `<span class="filter-item2 closeMe" data-filter="${sanitizeCategory(category)}">${category}</span>`;
-            navItem.addEventListener('click', function(event) {
-                event.preventDefault();
-                closeNav(); // Close the category overlay
-                const selectedLibrary = document.getElementById('mySelect').value;
-                const selectedGrade = document.querySelector('.lukumain-nav .activenav').getAttribute('data-grade');
-                filterBookData(selectedLibrary, selectedGrade, sanitizeCategory(category));
-
-                // Update the category link text
-                const categoryLink = document.querySelector('#openNav');
-                categoryLink.textContent = `${category} ☰`;
-            });
-            navContainer.appendChild(navItem);
-        });
-
-        // Add "All" category as the last filter
-        const allNavItem = document.createElement('a');
-        allNavItem.innerHTML = `<span class="filter-item2 closeMe active" data-filter="all">Kaikki</span>`;
-        allNavItem.addEventListener('click', function(event) {
+    const navContainer = document.getElementById('categoryNav');
+    navContainer.innerHTML = '';
+    categories.forEach(category => {
+        const navItem = document.createElement('a');
+        navItem.innerHTML = `<span class="filter-item2 closeMe" data-filter="${sanitizeCategory(category)}">${category}</span>`;
+        navItem.addEventListener('click', function(event) {
             event.preventDefault();
             closeNav(); // Close the category overlay
             const selectedLibrary = document.getElementById('mySelect').value;
             const selectedGrade = document.querySelector('.lukumain-nav .activenav').getAttribute('data-grade');
-            filterBookData(selectedLibrary, selectedGrade, 'all');
-
+            filterBookData(selectedLibrary, selectedGrade, sanitizeCategory(category));
             // Update the category link text
             const categoryLink = document.querySelector('#openNav');
-            categoryLink.textContent = `Kaikki ☰`;
+            categoryLink.textContent = `${category} ☰`;
+            // Scroll to top after a delay
+            setTimeout(() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 700); // Delay to ensure UI is ready
         });
-        navContainer.appendChild(allNavItem);
-    }
+        navContainer.appendChild(navItem);
+    });
+    // Add "All" category as the last filter
+    const allNavItem = document.createElement('a');
+    allNavItem.innerHTML = `<span class="filter-item2 closeMe active" data-filter="all">Kaikki</span>`;
+    allNavItem.addEventListener('click', function(event) {
+        event.preventDefault();
+        closeNav(); // Close the category overlay
+        const selectedLibrary = document.getElementById('mySelect').value;
+        const selectedGrade = document.querySelector('.lukumain-nav .activenav').getAttribute('data-grade');
+        filterBookData(selectedLibrary, selectedGrade, 'all');
+        // Update the category link text
+        const categoryLink = document.querySelector('#openNav');
+        categoryLink.textContent = `Kaikki ☰`;
+        // Scroll to top after a delay
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 700); // Delay to ensure UI is ready
+    });
+    navContainer.appendChild(allNavItem);
+}
+
 });
