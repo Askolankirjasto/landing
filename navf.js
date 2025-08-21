@@ -146,112 +146,117 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
   function filterBookData(library, grade = 'Grade 1', category = 'all') {
-    // Get the gallery container and check if it exists
     const galleryContainer = document.getElementById('menufilter');
-    if (!galleryContainer) {
-        console.error('Error: #menufilter element not found!');
-        return;
-    }
-
     const filtersContainer = document.getElementById('filters');
-    if (!filtersContainer) {
-        console.error('Error: #filters element not found!');
+
+    if (!galleryContainer || !filtersContainer) {
+        console.error('Error: Required elements not found!');
         return;
     }
 
+    // Clear containers
     filtersContainer.innerHTML = '';
+    galleryContainer.innerHTML = '';
+
+    // Remove existing modals
+    document.querySelectorAll('.modal').forEach(modal => modal.remove());
+
+    // Collect unique categories
     const uniqueCategories = new Set();
     bookData.forEach(item => {
-        if (item.acf && item.acf.category) {
+        if (item.acf?.category) {
             uniqueCategories.add(item.acf.category);
         }
     });
-
-    // Sort categories alphabetically
     const sortedCategories = Array.from(uniqueCategories).sort();
-    sortedCategories.forEach(category => {
+
+    // Create filters
+    sortedCategories.forEach(cat => {
         const filter = document.createElement('span');
         filter.className = 'filter filter-item myanimate filter-item2';
-        filter.setAttribute('data-filter', `.${sanitizeCategory(category)}`);
-        filter.textContent = category;
+        filter.setAttribute('data-filter', `.${sanitizeCategory(cat)}`);
+        filter.textContent = cat;
         filtersContainer.appendChild(filter);
     });
 
-    // Add "Kaikki" category as the last filter
+    // Add "Kaikki" filter
     const allFilter = document.createElement('span');
     allFilter.className = 'filter filter-item myanimate filter-item2';
     allFilter.setAttribute('data-filter', 'all');
     allFilter.textContent = 'Kaikki';
     filtersContainer.appendChild(allFilter);
 
-    // Clear the gallery container
-    galleryContainer.innerHTML = '';
-
-    // Remove existing modals
-    document.querySelectorAll('.modal').forEach(modal => modal.remove());
-
-    // Shuffle the bookData if the category is "all"
+    // Shuffle if category is "all"
     const filteredBookData = category === 'all' ? shuffleArray([...bookData]) : bookData;
+
+    // Use DocumentFragment for batch DOM updates
+    const fragment = document.createDocumentFragment();
+
     filteredBookData.forEach((item, index) => {
-    const sanitizedCategory = sanitizeCategory(item.acf.category);
-    if (category === 'all' || sanitizedCategory === sanitizeCategory(category)) {
-        const galleryItem = document.createElement('div');
-        galleryItem.className = `gallery-item ${sanitizedCategory}`;
-        galleryItem.setAttribute('data-bs-toggle', 'modal');
-        galleryItem.setAttribute('data-bs-target', `#Modal${index}`);
+        const sanitizedCategory = sanitizeCategory(item.acf.category);
+        if (category === 'all' || sanitizedCategory === sanitizeCategory(category)) {
+            const galleryItem = document.createElement('div');
+            galleryItem.className = `gallery-item ${sanitizedCategory}`;
+            galleryItem.setAttribute('data-bs-toggle', 'modal');
+            galleryItem.setAttribute('data-bs-target', `#Modal${index}`);
+            galleryItem.style.opacity = '0';
+            galleryItem.style.transform = 'scale(0.8)';
 
-        const innerDiv = document.createElement('div');
-        innerDiv.className = 'gallery-item-inner';
+            const innerDiv = document.createElement('div');
+            innerDiv.className = 'gallery-item-inner';
 
-        const hoverEffectDiv = document.createElement('div');
-        hoverEffectDiv.className = 'hovereffect';
+            const hoverEffectDiv = document.createElement('div');
+            hoverEffectDiv.className = 'hovereffect';
 
-        const imgContainer = document.createElement('div');
-        imgContainer.style.position = 'relative';
+            const img = document.createElement('img');
+            img.loading = 'lazy'; // Enable lazy loading
+            img.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNlZWVlZSIvPjwvc3ZnPg=='; // Placeholder
+            img.dataset.src = item.acf.cover
+                ? `${item.acf.cover}`
+                : `https://helle.finna.fi/Cover/Show?source=Solr&size=large&recordid=${item.acf.id}`;
+            img.alt = item.acf.title;
 
-        const img = document.createElement('img');
-        img.src = item.acf.cover
-            ? `${item.acf.cover}`
-            : `https://helle.finna.fi/Cover/Show?source=Solr&size=large&recordid=${item.acf.id}`;
-        img.alt = item.acf.title;
-        img.loading = 'lazy';
-        img.style.opacity = '0';
-        img.style.transition = 'opacity 0.3s';
+            const overlayDiv = document.createElement('div');
+            overlayDiv.className = 'overlay';
 
-        const spinner = document.createElement('div');
-        spinner.classList.add('loading-spinner');
-        imgContainer.appendChild(spinner);
-        imgContainer.appendChild(img);
+            const title = document.createElement('h2');
+            title.textContent = item.acf.title;
 
-        img.onload = function() {
-            img.style.opacity = '1';
-            spinner.style.display = 'none';
-        };
+            const infoButton = document.createElement('button');
+            infoButton.type = 'button';
+            infoButton.className = 'btn btn-primary over myanimate';
+            infoButton.textContent = 'Lisää tietoa';
 
-        hoverEffectDiv.appendChild(imgContainer);
-        innerDiv.appendChild(hoverEffectDiv);
-        galleryItem.appendChild(innerDiv);
-        galleryContainer.appendChild(galleryItem);
-    }
-});
+            overlayDiv.appendChild(title);
+            overlayDiv.appendChild(infoButton);
 
+            hoverEffectDiv.appendChild(img);
+            hoverEffectDiv.appendChild(overlayDiv);
 
-    // Initialize MixItUp with animation settings
+            innerDiv.appendChild(hoverEffectDiv);
+            galleryItem.appendChild(innerDiv);
+
+            fragment.appendChild(galleryItem);
+
+            // Create modal for each book
+            createModal(item, index);
+        }
+    });
+
+    galleryContainer.appendChild(fragment);
+
+    // Initialize MixItUp
     mixer = mixitup(galleryContainer, {
-        selectors: {
-            target: '.gallery-item'
-        },
+        selectors: { target: '.gallery-item' },
         animation: {
             duration: 600,
             effects: 'fade scale(0.5) translateZ(-100px)',
             easing: 'cubic-bezier(0.645, 0.045, 0.355, 1)'
         },
-        load: {
-            filter: 'all'
-        }
+        load: { filter: 'all' }
     });
 
-    // Fade in the new gallery items
+    // Fade in new items
     const newGalleryItems = galleryContainer.querySelectorAll('.gallery-item');
     newGalleryItems.forEach(item => {
         item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -259,20 +264,44 @@ document.addEventListener('DOMContentLoaded', function() {
         item.style.transform = 'scale(1)';
     });
 
-    // Initialize the filter function and set the "Kaikki" category as active by default
+    // Initialize filter and set "Kaikki" as active
     mygalleryfilterf2();
     const allFilterElement = filtersContainer.querySelector('[data-filter="all"]');
-    if (allFilterElement) {
-        allFilterElement.classList.add('active');
-    }
+    if (allFilterElement) allFilterElement.classList.add('active');
 
-    // Populate the categories in the navigation menu
+    // Populate categories in navigation
     populateCategories(sortedCategories);
 
-    // Scroll to top after fade-in
+    // Scroll to top
     setTimeout(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 600);
+
+    // Load actual images when they enter the viewport
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+            observer.observe(img);
+        });
+    }
+}
+
+// Efficient Fisher-Yates shuffle
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
 }
 
 
