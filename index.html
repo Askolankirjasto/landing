@@ -1,41 +1,241 @@
-<!DOCTYPE html>
-<html lang="fi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lukudiplomi - Päivityksessä</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #007BFF;
-        }
-        p {
-            font-size: 18px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Tervetuloa Lukudiplomi.com-sivulle</h1>
-        <p>Sivustoa päivitetään ja se avautuu uudelleen pian.</p>
-        <p>Kiitos kärsivällisyydestäsi!</p>
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="stylebarf.css">
+
+    
+
+    <title>Lukudiplomi</title>
+  </head>
+
+
+
+
+<style>
+select {
+  /* Reset Select */
+  appearance: none;
+  outline: 10px red;
+  border: 0;
+  box-shadow: none;
+  /* Personalize */
+  flex: 1;
+  padding: 0 1em;
+  color: #fff;
+  background-color: #2a2932;
+  background-image: none;
+  cursor: pointer;
+}
+
+
+</style>
+
+
+<header class="lukuheader" role="banner">
+     <h1 class="lukulogo">
+    <a id="hellehome" href="#"><span>Helle</span>Finna</a>
+  </h1>
+        <h1 class="lukulogo">
+        <form method="get" name="form" action="" id="myForm">
+            <select id="mySelect" name="kirjasto">
+                <!-- Options will be populated dynamically -->
+            </select>
+        </form>
+    </h1>
+
+<div class="nav-wrap">
+        <nav class="lukumain-nav" role="navigation">
+            <ul class="unstyled list-hover-slide">
+                <li class="animate__animated animate__rubberBand"><a class="activenav" href="#" data-grade="Grade 1">1. luokka</a></li>
+                <li><a href="#" data-grade="Grade 2">2. luokka</a></li>
+                <li><a href="#" data-grade="Grade 3">3. luokka</a></li>
+                <li><a href="#" data-grade="Grade 4">4. luokka</a></li>
+                <li><a href="#" data-grade="Grade 5">5. luokka</a></li>
+                <li><a href="#" data-grade="Grade 6">6. luokka</a></li>
+            </ul>
+        </nav>
     </div>
-</body>
+
+    <div class="mycontact">
+        <a href="mailto:sohvi.hiilivirta@askola.com" class="c-icon-button c-icon-button--right">
+            <span>Sohvi Hiilivirta</span>
+            <i class="fa fa-envelope"></i>
+        </a><br>
+        <a href="mailto:david.thiry@askola.com" class="c-icon-button c-icon-button--right">
+            <span>David Thiry</span>
+            <i class="fa fa-envelope"></i>
+        </a>
+    </div>
+</header>
+
+
+
+
+
+
+ <div class="wrap">
+        <section class="gallery">
+            <div class="container">
+                <div class="row luku menu">
+                    <h1 class="luku">
+                        Lukudiplomi
+                        <span id="vuosi" class="">2025</span>
+                        <a href="#">
+                            <i>
+                                <span id="lukuinfo" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" class="animate__infinite infinite animate__animated animate animate__pulse animate__slow fa fa-info-circle"></span>
+                            </i>
+                        </a>
+                    </h1>
+                    <div class="gallery-filter" id="filters">
+                        <!-- Filters will be populated dynamically -->
+                    </div>
+                </div>
+
+                <div class="row luku" id="menufilter">
+                    <!-- Book cards will be populated dynamically -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+
+
+
+ 
+ <!-- The overlay -->
+<div id="myNav" class="myoverlay">
+
+  <!-- Button to close the overlay navigation -->
+  <a href="#" class="closebtn" id="closeNav">×</a>
+
+  <!-- Overlay content -->
+  <div class="myoverlay-content">
+    <nav class="lukumain-nav mobile" role="navigation">
+  <ul class="unstyled list-hover-slide">
+    <div class="gallery-filter2" id="categoryNav">
+      <!-- Categories will be populated here dynamically -->
+    </div>
+  </ul>
+</nav>
+
+      
+
+  </div>
+    <div class="mycontact">
+        <a href="mailto:sohvi.hiilivirta@askola.com" class="c-icon-button c-icon-button--right minicontact">
+            <span>Sohvi Hiilivirta</span>
+            <i class="fa fa-envelope"></i>
+        </a><br>
+        <a href="mailto:david.thiry@askola.com" class="c-icon-button c-icon-button--right minicontact">
+            <span>David Thiry</span>
+            <i class="fa fa-envelope"></i>
+        </a>
+    </div>
+</div>
+
+
+
+<div id="myNavLuokka" class="myoverlay">
+
+    <!-- Button to close the overlay navigation -->
+    <a href="#" class="closebtn" id="closeNavLuokka">×</a>
+
+    <!-- Overlay content -->
+    <div class="myoverlay-content">
+        <nav class="lukumain-nav mobile" role="navigation">
+          <ul class="unstyled list-hover-slide">
+        	<li><a href="#" data-grade="Grade 1" id="grade1lk">1 luokka</a></li>
+            <li><a href="#" data-grade="Grade 2" id="grade2lk">2 luokka</a></li>
+            <li><a href="#" data-grade="Grade 3" id="grade3lk">3 luokka</a></li>
+            <li><a href="#" data-grade="Grade 4" id="grade4lk">4 luokka</a></li>
+            <li><a href="#" data-grade="Grade 5" id="grade5lk">5 luokka</a></li>
+            <li><a href="#" data-grade="Grade 6" id="grade6lk">6 luokka</a></li>
+          </ul>
+        </nav>
+    </div>
+    <div class="mycontact">
+        <a href="mailto:sohvi.hiilivirta@askola.com" class="c-icon-button c-icon-button--right minicontact">
+            <span>Sohvi Hiilivirta</span>
+            <i class="fa fa-envelope"></i>
+        </a><br>
+        <a href="mailto:david.thiry@askola.com" class="c-icon-button c-icon-button--right minicontact">
+            <span>David Thiry</span>
+            <i class="fa fa-envelope"></i>
+        </a>
+    </div>
+
+</div>
+
+<!-- Use any element to open/show the overlay navigation menu -->
+
+
+<!-----------------------navbar------------------------->
+ <div class="navbar" id="bottomnavbar">
+  <a href="" class="active" ><span id="openNavLuokka"> 1. luokka ☰</span></a>
+  <a href=""><span id="openNav">Kategoriat ☰</span> </a>
+</div> 
+
+
+
+
+<!---Modal info ------------------>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title text-center" id="exampleModalLongTitle">Lukudiplomi</h2>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+      <div class="modal-body text-justify modalpadding">
+        
+        <h3 class="text-center">Ohjeet lukudiplomin käyttöön:</h3>
+        Lukudiplomi suoritetaan lukuvuoden aikana ja diplomissa on kolme tasoa:<br><br><span class="myblock text-center">1. 5 luettua kirjaa<br>2. 10 luettua kirjaa<br>3. 15 luettua kirjaa.</span>
+        <br><br>1.–2. lk<br>Lue vähintään viisi haluamaasi kirjaa. Voit valita mistä kategoriasta tahansa.<br>Ne, joiden lukutaito on jo parempi, voivat valita yhden kirjan jokaisesta kategoriasta
+        <br><br>3.–6. lk<br>Lue vähintään viisi haluamaasi kirjaa, joista jokaisen tulee olla eri kategoriasta. Halutessasi, voit lukea yhden kirjan jokaisesta kategoriasta, jolloin luettujen kirjojen määräksi tulee kuusi tai seitsemän.
+        <br><br>Diplomin suorittaa, kun on lukenut vähintään viisi kirjaa. Sarjoihin kuuluvista kirjoista voi valita minkä itse haluaa. Ylemmän tason diplomin suorittavat, voivat valita yhdestä kategoriasta useamman kirjan, kunhan ensin kaikista kategorioista on luettu jotain.
+        <hr class="solid">
+        <h3 class="text-center">Mitä lukudiplomi on?</h3>
+        Askolan kirjastossa on kehitetty lukudiplomi, joka toimii lapsen lukemisen polkuna.
+        <br><br>Lukudiplomikirjat ovat aarrearkku ja tietopankki, josta on iloa lapsille, kouluille ja opettajille, vanhemmille ja kirjaston henkilökunnalle, apuväline, jonka avulla voimme sytyttää lukuinnon jokaisessa lapsessa. Lukudiplomista on iloa myös lasten ystäville ja sukulaisille, jotka kaipaavat lahjavihjeitä jouluksi tai merkkipäiväksi lapsille.
+        <br><br>Lukudiplomi on jokaisen ulottuvilla ja siitä lapset voivat itse etsiä mitä seuraavaksi lukevat. Lukudiplomissa esitellään uusia kirjoja ja sitä päivitetään joka vuosi.
+        <br><br>Lukudiplomissa esitellään alakoulun 1.–6. -luokille lukuvinkkejä eritasoisille lukijoille eri teemoista tai aiheista. Tavoitteena on tukea lasten lukutaitoa lukuvinkein niin, että jokainen lapsi löytää mieluista lukemista oman tasonsa ja kiinnostuksensa mukaisesti.
+        <br><br>Askolassa kehitetyssä lukudiplomissa on valtava määrä lukuvinkkejä: noin 60 kirjaa (+ sarjat) jokaiselle luokkatasolle eri kategorioihin jaettuna, yhteensä useita satoja kirjoja.
+        <br><br>Lukudiplomi on kehitetty osana Askolan koululaiset lukemaan -hanketta ja sen on suunnitellut ja toteuttanut hanketyöntekijä Sohvi Hiilivirta. Askolan kunnankirjaston kirjastonhoitaja David Thiry on luonut ja kehittänyt <a href="lukudiplomi.com">lukudiplomi.com</a> verkkosivun.
+        <br><br>Askolassa kehitettyä lukudiplomia voivat käyttää myös muut koulut ja kirjastot ja toiveenamme on, että se leviäisi koko maan kattavaksi.
+        <hr class="solid">
+        <h3 class="text-center">Jokaisella on oikeus monipuoliseen lukutaitoon</h3>
+        <br>Jokaisella on oikeus monipuoliseen lukutaitoon ja lukevaan elämäntapaan. Lukutaito on välttämätön taito yhteiskunnassa pärjäämiselle ja se on koko demokraattisen yhteiskuntamme perusta. Monipuolinen lukutaito luo pohjan kaikelle oppimiselle, joten kukaan ei voi välttyä lukemiselta.
+        
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sulje</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+    <!-- MixItUp -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/3.3.1/mixitup.min.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="navf.js"></script>
+  </body>
 </html>
