@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
         bookData.forEach(item => {
             if (item.acf && item.acf.category) {
                 uniqueCategories.add(item.acf.category);
-        
+            }
         });
 
         // Sort categories alphabetically
@@ -477,7 +477,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const categoryLink = document.querySelector('#openNav');
             const categoryText = this.textContent;
             categoryLink.textContent = `${categoryText} ☰`;
-            window.scrollTo(0, 0);
         });
     });
 
