@@ -153,9 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
         bookData.forEach(item => {
             if (item.acf && item.acf.category) {
                 uniqueCategories.add(item.acf.category);
-            }
-            populateCategories(sortedCategories);
-            window.scrollTo(0, 0); 
+        
         });
 
         // Sort categories alphabetically
@@ -265,6 +263,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Populate the categories in the navigation menu
         populateCategories(sortedCategories);
+            window.scrollTo(0, 0);
     }
 
     function createModal(item, index) {
