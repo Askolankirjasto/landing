@@ -465,20 +465,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Close the category overlay and update books when a category is clicked
     document.querySelectorAll('.gallery-filter2 .filter-item2').forEach(item => {
-        item.addEventListener('click', function(event) {
-            event.preventDefault();
-            closeNav();
-            const selectedCategory = this.getAttribute('data-filter');
-            const selectedLibrary = document.getElementById('mySelect').value;
-            const selectedGrade = document.querySelector('.lukumain-nav .activenav').getAttribute('data-grade');
-            filterBookData(selectedLibrary, selectedGrade, selectedCategory);
-
-            // Update the category link text
-            const categoryLink = document.querySelector('#openNav');
-            const categoryText = this.textContent;
-            categoryLink.textContent = `${categoryText} ☰`;
-        });
+    item.addEventListener('click', function(event) {
+        event.preventDefault();
+        closeNav(); // Close the overlay
+        const selectedCategory = this.getAttribute('data-filter');
+        const selectedLibrary = document.getElementById('mySelect').value;
+        const selectedGrade = document.querySelector('.lukumain-nav .activenav').getAttribute('data-grade');
+        filterBookData(selectedLibrary, selectedGrade, selectedCategory);
+        // Update the category link text
+        const categoryLink = document.querySelector('#openNav');
+        const categoryText = this.textContent;
+        categoryLink.textContent = `${categoryText} ☰`;
     });
+});
+
 
     // Call the function to populate the library list
     populateLibraryList();
