@@ -1,0 +1,873 @@
+.main.template-dir-content.template-name-content h2 {
+  line-height: 1.5;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.modal-header {
+  font-size: 28px;
+}
+
+#lukuinfo {
+  top: -15px;
+  position: relative;
+  right: -24px;
+  font-size: 41px;
+  color: white;
+}
+
+.modalpadding {
+  overflow: hidden;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.myblock {
+  display: block;
+}
+
+hr.solid {
+  border-top: 3px solid #bbb;
+}
+
+.mycontact {
+  text-align: end;
+  position: absolute;
+  bottom: 2em;
+  right: 1em;
+}
+
+.modalover {
+  bottom: 15px;
+  left: 0;
+  right: 125px;
+  margin: 0 auto;
+  width: 65%;
+}
+
+.row.luku {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/*.row.luku.menu {
+    display: flex;
+    padding-top: 10px;
+	position: -webkit-sticky; 
+    position: sticky;
+    top: -1em;
+    z-index: 2;
+    background-color: #2a2932;
+}*/
+/*.gallery*/
+.gallery {
+  width: 100%;
+  display: block;
+  min-height: 100vh;
+  background-color: #2a2932;
+  /*padding: 25px 0;*/
+}
+
+.gallery .gallery-filter {
+  padding: 0 15px;
+  width: 102%;
+  text-align: center;
+  /*	margin-bottom: 40px;*/
+  display: block;
+}
+
+.gallery .gallery-filter .filter-item {
+  color: #ffffff;
+  font-size: 18px;
+  border: 2px solid white;
+  /*text-transform: uppercase;*/
+  display: inline-block;
+  border-radius: 20px;
+  margin-right: 8px;
+  cursor: pointer;
+  padding: 8px 20px 8px 20px;
+  line-height: 1.2;
+  transition: all 0.3s ease;
+  margin-bottom: 1em;
+}
+
+.gallery .gallery-filter .filter-item.active {
+  color: white;
+  border-color: #16b5ef;
+  background: #16b5ef;
+}
+
+.gallery .gallery-item {
+  /*display: none;*/
+  width: 25%;
+  padding: 15px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+.gallery-item {
+  animation-duration: 0.6s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+
+.gallery-item.fade-in {
+  animation-name: fadeInUp;
+}
+
+.gallery-item.fade-out {
+  animation-name: fadeOutDown;
+}
+
+.gallery .gallery-item-inner img {
+  width: 100%;
+  border: 3px solid #d4dad9;
+  height: auto;
+}
+
+.gallery .gallery-item.show {
+  display: block;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.gallery .gallery-item.hide {
+  display: none;
+}
+
+/*responsive*/
+.header {
+  display: none;
+}
+
+.search-form-container {
+  display: none;
+}
+
+.hidden-print {
+  display: none;
+}
+
+.system-messages {
+  display: none;
+}
+
+/*
+#header-collapse {
+    display:none;
+}
+.navbar-nav.navbar-main {
+    display:none;
+}
+.navbar-brand {
+    display:none;
+}
+#language_menu {
+    display:none;
+}*/
+#menufilter {
+  position: sticky;
+  top: 0;
+}
+
+:before,
+:after {
+  box-sizing: border-box;
+}
+
+.unstyled {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1em;
+}
+
+.unstyled a {
+  text-decoration: none;
+}
+
+.list-inline {
+  overflow: hidden;
+}
+
+.list-inline li {
+  float: left;
+}
+
+.lukuheader {
+  position: fixed;
+  left: 0;
+  top: 0px;
+  bottom: 0;
+  width: 17.5em;
+  background: #2a2932;
+}
+
+.lukulogo {
+  /*text-transform: lowercase;*/
+  font: 300 24px "Source Sans Pro", Helvetica, Arial, sans-serif;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+.lukulogo a {
+  display: block;
+  padding: 1em 0;
+  color: #DFDBD9;
+  text-decoration: none;
+  transition: 0.15s linear color;
+}
+
+.activenav {
+  border-right: solid 7px #e0457b;
+  background: #16b5ef;
+  /*pointer-events: none;*/
+}
+
+.lukulogo a:hover {
+  color: #fff;
+}
+
+.lukulogo a:hover span {
+  color: #e0457b;
+}
+
+.lukulogo span {
+  font-weight: 700;
+  transition: 0.15s linear color;
+}
+
+.lukumain-nav ul {
+  border-top: solid 1px #3C3735;
+}
+
+.lukumain-nav li {
+  border-bottom: solid 1px #3C3735;
+}
+
+.lukumain-nav a {
+  padding: 1.1em 0;
+  color: #DFDBD9;
+  font: 400 1.5em "Source Sans Pro", Helvetica, Arial, sans-serif;
+  text-align: center;
+  /*text-transform: lowercase;*/
+}
+
+.lukumain-nav a:hover {
+  color: #fff;
+}
+
+.social-links {
+  border-bottom: solid 1px #3C3735;
+}
+
+.social-links li {
+  width: 25%;
+  border-left: solid 1px #3C3735;
+}
+
+.social-links li:first-child {
+  border: none;
+}
+
+.social-links a {
+  display: block;
+  height: 5.5em;
+  text-align: center;
+  color: #3C3735;
+  font: 0.75em/5.5em "Source Sans Pro", Helvetica, Arial, sans-serif;
+}
+
+.social-links a:hover {
+  color: #DFDBD9;
+}
+
+.list-hover-slide li {
+  position: relative;
+  overflow: hidden;
+}
+
+.list-hover-slide a {
+  display: block;
+  position: relative;
+  z-index: 1;
+  transition: 0.35s ease color;
+}
+
+.list-hover-slide a:before {
+  content: "";
+  display: block;
+  z-index: -1;
+  position: absolute;
+  left: -100%;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-right: solid 5px #e0457b;
+  background: rgba(22, 181, 239, 0.4509803922);
+  transition: 0.35s ease left;
+}
+
+.list-hover-slide a.is-current:before,
+.list-hover-slide a:hover:before {
+  left: 0;
+}
+
+h1.luku {
+  font-size: 75px !important;
+  color: white;
+  margin-top: 60px;
+  text-align: center;
+  background-color: #2a2932;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 45px;
+}
+
+#vuosi {
+  font-size: 22px;
+  color: white;
+  text-align: center;
+  /*background-color: #2a2932;*/
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: -36px;
+  top: -30px;
+  position: relative;
+  left: 1px;
+  z-index: 3;
+}
+
+.main {
+  background: #2a2932;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #16b5ef;
+}
+
+/*----------------------------------------------------------*/
+.hovereffect {
+  width: 100%;
+  height: 100%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  cursor: default;
+}
+
+.hovereffect .overlay {
+  position: absolute;
+  overflow: hidden;
+  width: 90%;
+  height: 90%;
+  left: 5%;
+  top: 5%;
+  border-bottom: 1px solid #FFF;
+  border-top: 1px solid #FFF;
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: scale(0, 1);
+  -ms-transform: scale(0, 1);
+  transform: scale(0, 1);
+  background-color: rgba(42, 41, 50, 0.8784313725);
+}
+
+.hovereffect:hover .overlay {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+
+.hovereffect img {
+  display: block;
+  position: relative;
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s;
+}
+
+.hovereffect:hover img {
+  filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="linear" slope="0.6" /><feFuncG type="linear" slope="0.6" /><feFuncB type="linear" slope="0.6" /></feComponentTransfer></filter></svg>#filter');
+  filter: brightness(0.6);
+  -webkit-filter: brightness(0.6);
+}
+
+.hovereffect h2 {
+  /*text-transform: uppercase;*/
+  text-align: center;
+  position: relative;
+  font-size: 24px !important;
+  background-color: transparent;
+  margin-top: 12px !important;
+  color: #FFF;
+  padding: 1em 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, -100%, 0);
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.hovereffect a.info,
+.hovereffect p {
+  color: #FFF;
+  padding: 1em 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+}
+
+.hovereffect:hover a.info,
+.hovereffect:hover p,
+.hovereffect:hover h2 {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.over {
+  bottom: 22px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 70%;
+}
+
+/*----------------------------------*/
+/* This changes all the animations globally */
+.animate__zoomInDown {
+  --animate-delay: 0.2s;
+}
+
+/*---------------------------bottom navbar----------------------------*/
+#bottomnavbar {
+  background-color: #333;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+}
+
+/* Style the links inside the navigation bar */
+#bottomnavbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  width: 50%;
+}
+
+/* Change the color of links on hover */
+#bottomnavbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+#bottomnavbar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+/*---------------------full menu--------------------------*/
+/* The Overlay (background) */
+.myoverlay {
+  /* Height & width depends on how you want to reveal the overlay (see JS below) */
+  height: 100%;
+  width: 0;
+  position: fixed;
+  /* Stay in place */
+  z-index: 3;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  background-color: #000000;
+  /* Black fallback color */
+  background-color: rgba(0, 0, 0, 0.9);
+  /* Black w/opacity */
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+  transition: 0.5s;
+  /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+/* Position the content inside the overlay */
+.myoverlay-content {
+  position: relative;
+  top: 25%;
+  /* 25% from the top */
+  width: 100%;
+  /* 100% width */
+  text-align: center;
+  /* Centered text/links */
+  margin-top: 30px;
+  /* 30px top margin to avoid conflict with the close button on smaller screens */
+}
+
+/* The navigation links inside the overlay */
+.myoverlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181 !important;
+  display: block;
+  /* Display block instead of inline */
+  transition: 0.3s;
+  /* Transition effects on hover (color) */
+}
+
+/* When you mouse over the navigation links, change their color */
+.myoverlay a:hover,
+.myoverlay a:focus {
+  color: #f1f1f1;
+}
+
+/* Position the close button (top right corner) */
+.myoverlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+@media (min-width: 1400px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+      max-width: 1217px;
+    }
+  }
+/*---------------------------------------------------------------------------modal-------------------------------*/
+
+/* Custom styles for the modal */
+
+.modal-dialog {
+    max-width: 50%; /* Adjust the width as needed for larger screens */
+    width: 33%;
+    margin: 1.75rem auto; /* Center the modal */
+}
+
+
+@media (max-width: 768px) {
+    .modal-dialog {
+        max-width: 90%; /* Adjust the width for smaller screens */
+        width: 90%;
+    }
+}
+
+/* Additional styles for very small screens */
+@media (max-width: 576px) {
+    .modal-dialog {
+        max-width: 90%; /* Full width for very small screens */
+        width: 90%;
+       /* margin: 0.5rem; /* Adjust margin for better fit */
+    }
+}
+
+.modal-content {
+    border-radius: 0.3rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.modal-body {
+    padding: 20px; /* Adjust padding as needed */
+}
+
+.modalimg {
+    max-height: 450px;
+    border-radius: 0.3rem;
+    max-width: 80%;
+    height: auto;
+    object-fit: contain;
+}
+
+@media (max-width: 767.98px) {
+    .modalimg {
+        height: auto;
+        margin-bottom: 1em;
+    }
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+/* .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+} */
+
+.text-left {
+    text-align: left;
+}
+
+
+@media (max-width: 1615px) {
+  .gallery .gallery-filter .filter-item {
+    /*font-size: 1.5em;*/
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+  .gallery .gallery-item {
+    width: 25%;
+  }
+  .row.luku {
+    width: 85%;
+    margin-left: 14em;
+  }
+  .gallery {
+    padding-top: 0;
+  }
+  .lukumain-nav a {
+    font-size: 14px;
+  }
+}
+@media (max-width: 1440px) {
+  .lukuheader {
+    width: 11.5em;
+  }
+  /*.gallery .gallery-item{
+  width: calc(100% / 3 );
+     }*/
+  .gallery .gallery-filter .filter-item {
+    font-size: 16px;
+    padding: 8px 16px 8px 16px;
+  }
+}
+@media (max-width: 1300px) {
+  .minicontact {
+    display: none !important;
+    /*font-size:2em!important;
+      color: #b33762!important;*/
+  }
+  .gallery .gallery-item {
+    width: 20%;
+  }
+  #lukuinfo {
+    font-size: 27px;
+  }
+  .mycontact {
+    font-size: 10px;
+  }
+  .lukuheader {
+    width: 12em;
+  }
+  .lukumain-nav a {
+    font-size: 1em;
+  }
+  .lukumain-nav.mobile a {
+    font-size: 1.9em;
+  }
+  .row.luku {
+    margin-left: 14em;
+  }
+  .gallery .gallery-filter .filter-item {
+    font-size: 12px;
+    padding: 6px 12px 6px 12px;
+  }
+  .gallery .gallery-filter {
+    margin-top: -1em;
+  }
+  h1.luku {
+    margin-bottom: 14px;
+    color: white;
+    margin-top: 14px;
+    text-align: center;
+    background-color: #2a2932;
+    margin-left: auto;
+  }
+  .gallery .gallery-item-inner img {
+    height: 200px;
+  }
+  .hovereffect h2 {
+    font-size: 19px !important;
+  }
+  .gallery .gallery-item-inner img {
+    height: auto;
+  }
+  .hovereffect h2 {
+    font-size: 19px !important;
+  }
+}
+@media (min-width: 1200px) {
+  #bottomnavbar {
+    display: none;
+  }
+}
+@media (max-width: 1200px) {
+  .gallery .gallery-filter .filter-item {
+    font-size: 10px;
+    width: 90%;
+    margin-left: 3em;
+    display: ruby-base;
+  }
+  .gallery .gallery-item {
+    width: 25%;
+  }
+  .lukuheader {
+    /*width: 4.5em;*/
+    display: none;
+  }
+  .gallery .gallery-filter {
+    display: none;
+  }
+  .row.luku {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+@media (max-width: 900px) {
+  .gallery .gallery-item {
+    width: 50%;
+  }
+  #vuosi {
+    font-size: 19px;
+  }
+  /*@media(max-width: 491px){
+  	.gallery .gallery-item{
+  		width: calc(100% / 3);
+  	}
+  }*/
+}
+@media (max-width: 490px) {
+  .gallery .gallery-item {
+    width: 100%;
+  }
+  .gallery .gallery-filter .filter-item {
+    margin-bottom: 10px;
+  }
+  h1.luku {
+    font-size: 44px !important;
+  }
+  #vuosi {
+    font-size: 17px;
+    top: -9px;
+  }
+}
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+@media screen and (max-height: 450px) {
+  .myoverlay a {
+    font-size: 20px;
+  }
+  .myoverlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
+/*-----------------------hover filter gallery---------------------*/
+/*.gallery .gallery-filter .filter-item {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+}
+
+.gallery .gallery-filter .filter-item:hover {
+  animation-name: rubberBand;
+  background: #16b5ef82;
+
+}*/
+.myanimate {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+}
+
+.myanimate:hover {
+  animation-name: rubberBand;
+}
+
+.zoom {
+  transition: transform 0.2s;
+}
+
+.zoom:hover {
+  transform: scale(1.5);
+  /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+@keyframes rubberBand {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+.rubberBand {
+  -webkit-animation-name: rubberBand;
+  animation-name: rubberBand;
+}
+
+/*-------------------------------------------------- mixitup----------------------------------------------*/
+
+
+.series-img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.series-img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
