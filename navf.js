@@ -263,7 +263,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Populate the categories in the navigation menu
         populateCategories(sortedCategories);
-            window.scrollTo(0, 0);
     }
 
     function createModal(item, index) {
@@ -478,6 +477,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const categoryLink = document.querySelector('#openNav');
             const categoryText = this.textContent;
             categoryLink.textContent = `${categoryText} ☰`;
+            window.scrollTo(0, 0);
         });
     });
 
