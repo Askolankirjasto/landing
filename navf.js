@@ -154,6 +154,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (item.acf && item.acf.category) {
                 uniqueCategories.add(item.acf.category);
             }
+            populateCategories(sortedCategories);
+            window.scrollTo(0, 0); 
         });
 
         // Sort categories alphabetically
