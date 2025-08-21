@@ -165,6 +165,18 @@ document.addEventListener('DOMContentLoaded', function() {
             filter.setAttribute('data-filter', `.${sanitizeCategory(category)}`);
             filter.textContent = category;
             filtersContainer.appendChild(filter);
+
+            const newGalleryItems = galleryContainer.querySelectorAll('.gallery-item');
+    newGalleryItems.forEach(item => {
+        item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        item.style.opacity = '1';
+        item.style.transform = 'scale(1)';
+    });
+
+    // Scroll to top after fade-in
+    setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 600);
         });
 
         // Add "Kaikki" category as the last filter
@@ -509,41 +521,46 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function populateCategories(categories) {
-        const navContainer = document.getElementById('categoryNav');
-        navContainer.innerHTML = '';
-
-        categories.forEach(category => {
-            const navItem = document.createElement('a');
-            navItem.innerHTML = `<span class="filter-item2 closeMe" data-filter="${sanitizeCategory(category)}">${category}</span>`;
-            navItem.addEventListener('click', function(event) {
-                event.preventDefault();
-                closeNav(); // Close the category overlay
-                const selectedLibrary = document.getElementById('mySelect').value;
-                const selectedGrade = document.querySelector('.lukumain-nav .activenav').getAttribute('data-grade');
-                filterBookData(selectedLibrary, selectedGrade, sanitizeCategory(category));
-
-                // Update the category link text
-                const categoryLink = document.querySelector('#openNav');
-                categoryLink.textContent = `${category} ☰`;
-            });
-            navContainer.appendChild(navItem);
-        });
-
-        // Add "All" category as the last filter
-        const allNavItem = document.createElement('a');
-        allNavItem.innerHTML = `<span class="filter-item2 closeMe active" data-filter="all">Kaikki</span>`;
-        allNavItem.addEventListener('click', function(event) {
+ function populateCategories(categories) {
+    const navContainer = document.getElementById('categoryNav');
+    navContainer.innerHTML = '';
+    categories.forEach(category => {
+        const navItem = document.createElement('a');
+        navItem.innerHTML = `<span class="filter-item2 closeMe" data-filter="${sanitizeCategory(category)}">${category}</span>`;
+        navItem.addEventListener('click', function(event) {
             event.preventDefault();
             closeNav(); // Close the category overlay
             const selectedLibrary = document.getElementById('mySelect').value;
             const selectedGrade = document.querySelector('.lukumain-nav .activenav').getAttribute('data-grade');
-            filterBookData(selectedLibrary, selectedGrade, 'all');
-
+            filterBookData(selectedLibrary, selectedGrade, sanitizeCategory(category));
             // Update the category link text
             const categoryLink = document.querySelector('#openNav');
-            categoryLink.textContent = `Kaikki ☰`;
+            categoryLink.textContent = `${category} ☰`;
+            // Scroll to top after a delay
+            setTimeout(() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 1000); // Longer delay to ensure UI is ready
         });
-        navContainer.appendChild(allNavItem);
-    }
+        navContainer.appendChild(navItem);
+    });
+    // Add "All" category as the last filter
+    const allNavItem = document.createElement('a');
+    allNavItem.innerHTML = `<span class="filter-item2 closeMe active" data-filter="all">Kaikki</span>`;
+    allNavItem.addEventListener('click', function(event) {
+        event.preventDefault();
+        closeNav(); // Close the category overlay
+        const selectedLibrary = document.getElementById('mySelect').value;
+        const selectedGrade = document.querySelector('.lukumain-nav .activenav').getAttribute('data-grade');
+        filterBookData(selectedLibrary, selectedGrade, 'all');
+        // Update the category link text
+        const categoryLink = document.querySelector('#openNav');
+        categoryLink.textContent = `Kaikki ☰`;
+        // Scroll to top after a delay
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 1000); // Longer delay to ensure UI is ready
+    });
+    navContainer.appendChild(allNavItem);
+}
+
 });
