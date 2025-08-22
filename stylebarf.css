@@ -557,10 +557,8 @@ h1.luku {
   display: block;
   /* Display block instead of inline */
   transition: 0.3s;
-  /* Transition effects on hover (color) */
 }
 
-/* When you mouse over the navigation links, change their color */
 .myoverlay a:hover,
 .myoverlay a:focus {
   color: #f1f1f1;
@@ -583,15 +581,15 @@ h1.luku {
 
 /* Custom styles for the modal */
 .modal-dialog {
-    max-width: 90%; /* Default width for all screens */
+    max-width: 90%; 
     width: 90%;
-    margin: 1.75rem auto; /* Center the modal */
+    margin: 1.75rem auto; 
 }
 
 /* Adjust for larger screens */
 @media (min-width: 576px) {
     .modal-dialog {
-        max-width: 80%; /* Slightly larger on tablets */
+        max-width: 80%; 
         width: 80%;
     }
 }
@@ -599,15 +597,14 @@ h1.luku {
 /* Adjust for desktops */
 @media (min-width: 768px) {
     .modal-dialog {
-        max-width: 70%; /* Larger on desktops */
+        max-width: 70%; 
         width: 70%;
     }
 }
 
-/* Adjust for very large screens */
 @media (min-width: 992px) {
     .modal-dialog {
-        max-width: 40%; /* Even larger on big screens */
+        max-width: 40%; 
         width: 60%;
     }
 }
@@ -615,9 +612,9 @@ h1.luku {
 /* Special handling for landscape phones */
 @media (max-width: 767.98px) and (orientation: landscape) {
     .modal-dialog {
-        max-width: 95%; /* Almost full width in landscape */
+        max-width: 95%; 
         width: 95%;
-        margin: 0.5rem auto; /* Less margin for landscape */
+        margin: 0.5rem auto; 
     }
 }
 
@@ -629,39 +626,41 @@ h1.luku {
 /* Landscape phones */
 @media (max-width: 767.98px) and (orientation: landscape) {
     .modal-content {
-        border-radius: 0.2rem; /* Slightly smaller border radius */
+        border-radius: 0.2rem; 
     }
 }
 
 
 .modal-body {
-    padding: 15px; /* Default padding */
+    padding: 15px; 
 }
 
 /* Landscape phones */
 @media (max-width: 767.98px) and (orientation: landscape) {
     .modal-body {
-        padding: 10px; /* Less padding for landscape */
+        padding: 10px; 
     }
     col-12.col-md-6 {
-        flex: 0 0 100%; /* Full width for both columns */
+        flex: 0 0 100%; 
         max-width: 100%;
     }
 }
 
 .modalimg {
-    max-height: 300px; /* Default height */
-    max-width: 100%; /* Full width of container */
+    max-height: 300px; 
+    max-width: 100%; 
     height: auto;
     object-fit: contain;
     border-radius: 0.3rem;
+    display: block;
+    margin: auto;
 }
 
 /* Landscape phones */
 @media (max-width: 767.98px) and (orientation: landscape) {
     .modalimg {
-        max-height: 200px; /* Smaller height for landscape */
-        width: 100%; /* Full width */
+        max-height: 200px; 
+        width: 100%; 
     }
 }
 
@@ -895,6 +894,10 @@ h1.luku {
 .rubberBand {
   -webkit-animation-name: rubberBand;
   animation-name: rubberBand;
+}
+
+.mt-3 {
+  margin-top: 3rem !important;
 }
 
 /*-------------------------------------------------- mixitup----------------------------------------------*/
