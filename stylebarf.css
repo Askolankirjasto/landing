@@ -607,7 +607,7 @@ h1.luku {
 /* Adjust for very large screens */
 @media (min-width: 992px) {
     .modal-dialog {
-        max-width: 60%; /* Even larger on big screens */
+        max-width: 40%; /* Even larger on big screens */
         width: 60%;
     }
 }
