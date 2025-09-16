@@ -461,7 +461,7 @@ function shuffleArray(array) {
                 const coverImagePath = book.images && book.images.length > 0 ? book.images[0] : null;
                 const coverImageUrl = coverImagePath
                     ? `https://api.finna.fi${coverImagePath}`
-                    : `https://helle.finna.fi/Cover/Show?recordid=${book.id}&size=small`;
+                    : `https://helle.finna.fi/Cover/Show?recordid=${book.id}&size=medium`;
 
                 const img = document.createElement('img');
                 img.src = coverImageUrl;
