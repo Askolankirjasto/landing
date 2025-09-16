@@ -444,7 +444,7 @@ function shuffleArray(array) {
 
     async function fetchSeriesData(serieId, container) {
         try {
-            const seriesApiUrl = `https://api.finna.fi/api/v1/list?id=${serieId}`;
+            const seriesApiUrl = `https://api.finna.fi/api/v1/list?id=${serieId}&start=0&limit=100`;
             const seriesResponse = await fetch(seriesApiUrl);
             if (!seriesResponse.ok) throw new Error('Network response was not ok');
             const seriesData = await seriesResponse.json();
@@ -461,7 +461,7 @@ function shuffleArray(array) {
                 const coverImagePath = book.images && book.images.length > 0 ? book.images[0] : null;
                 const coverImageUrl = coverImagePath
                     ? `https://api.finna.fi${coverImagePath}`
-                    : `https://helle.finna.fi/Cover/Show?recordid=${book.id}`;
+                    : `https://helle.finna.fi/Cover/Show?recordid=${book.id}&size=small`;
 
                 const img = document.createElement('img');
                 img.src = coverImageUrl;
