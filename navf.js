@@ -499,9 +499,29 @@ function shuffleArray(array) {
             this.classList.add('activenav');
             const selectedLibrary = document.getElementById('mySelect').value;
             const selectedGrade = this.getAttribute('data-grade');
-            fadeOutAndFetchBookData(selectedLibrary, selectedGrade);
+
+           // Reset the category to "Kaikki" when grade changes
+            const categoryLink = document.querySelector('#openNav');
+            categoryLink.textContent = 'Kaikki ☰';
+
+        // Call fadeOutAndFetchBookData with the new grade and default category "all"
+        fadeOutAndFetchBookData(selectedLibrary, selectedGrade);
         });
     });
+
+    //reset category when grade change
+    function resetMobileCategoryFilter() {
+    const navContainer = document.getElementById('categoryNav');
+    const allFilters = navContainer.querySelectorAll('.filter-item2');
+    allFilters.forEach(filter => {
+        filter.classList.remove('active');
+    });
+    const kaikkiFilter = navContainer.querySelector('[data-filter="all"]');
+    if (kaikkiFilter) {
+        kaikkiFilter.classList.add('active');
+    }
+}
+
 
     // Close the category overlay and update books when a category is clicked
     document.querySelectorAll('.gallery-filter2 .filter-item2').forEach(item => {
