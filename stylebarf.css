@@ -193,6 +193,7 @@ hr.solid {
 #menufilter {
   position: sticky;
   top: 0;
+  padding-bottom: 60px
 }
 
 :before,

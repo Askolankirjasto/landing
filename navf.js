@@ -209,6 +209,7 @@ document.querySelectorAll('.modal:not(#exampleModalCenter)').forEach(modal => mo
 
             const img = document.createElement('img');
             img.loading = 'lazy'; // Enable lazy loading
+            
             img.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNlZWVlZSIvPjwvc3ZnPg=='; // Placeholder
             img.dataset.src = item.acf.cover
                 ? `${item.acf.cover}`
