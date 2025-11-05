@@ -814,7 +814,7 @@ h1.luku {
 }
 @media (max-width: 490px) {
   .gallery .gallery-item {
-    width: 100%;
+    width: 50%;
   }
   .gallery .gallery-filter .filter-item {
     margin-bottom: 10px;
