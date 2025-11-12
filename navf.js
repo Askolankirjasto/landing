@@ -608,6 +608,9 @@ function shuffleArray(array) {
         }, 700); // Delay to ensure UI is ready
     });
     navContainer.appendChild(allNavItem);
+    
 }
 
 });
+<script data-goatcounter="https://lukudiplomi.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
