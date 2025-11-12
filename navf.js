@@ -612,5 +612,3 @@ function shuffleArray(array) {
 }
 
 });
-<script data-goatcounter="https://lukudiplomi.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
